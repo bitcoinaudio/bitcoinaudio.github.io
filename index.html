@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitcoin Audio Playground</title>
+
+<link rel="stylesheet" type="text/css" href="style/codemirror.css">
+    <link href="css/satoshi-nk-lite.css" rel="stylesheet" />
+<script src="js/Tone.js"></script>
+<script src="js/webaudio-controls.js"></script>
+<script type="text/javascript" src="scripts/codemirror.js"></script>
+<script type="text/javascript" src="scripts/javascript.js"></script>
+<script type="text/javascript" src="scripts/audiokeys.js"></script>
+<script type="text/javascript" src="scripts/PresetList.js"></script>
+
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- Custom fonts for this template -->
+<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+</head>
+<body id="page-top" class="center" onload="loadplayground()">
+<div id="synth-container" class="synth-container">
+
+<div class="play-container">
+
+<div id="vol-panel" class="vol-panel"></div>
+
+
+<div class="blocknav">
+<span>
+<input id="prevblockButton" type="button" class="" value="< prev" onclick="prevheight()" /></span>
+<span>
+<input type="text" id="searchTB" onchange="getstring()" placeholder="ENTER BLOCK HEIGHT"></span>
+    <span>
+<input id="nextblockButton" type="button" class="" value="next >" onclick="nextheight()" /></span>
+         <br />       
+<!--Blockinfo Grid-Item-->
+<div id="blockinfo" class="blockinfo">
+<h1>blockinfo goes hear</h1>
+</div>
+
+<select name="stringtype" id="stringtype" class="" onchange="getstring()">
+<option value="root">Root</option>
+<option value="hash">Hash</option>
+</select>
+<input type="text" id="blockTB" class="text-center" name="blockTB"><input type="text" id="stringindex" class="text-center" name="stringindex" />
+
+    <div class="space"></div>
+    <div class="space"></div>
+
+</div>
+<!-- Slice Controls-->
+<div class="slice-controls">
+<div class="slice">
+<input id="slicestrg" class="btn btn-default btn-sm" name="slicestrg" value="slicestrg">
+<input id="slicestrgBtn" class="btn btn-default btn-sm" type="button" value="slicestrgBtn" onclick="slicestrg()" />
+<input id="half" class="btn btn-default btn-sm" name="half" value="half">
+<input id="halfBtn" class="btn btn-default btn-sm" type="button" value="halfBtn" onclick="halfslice()" />
+</div>
+<div class="slice">
+<select name="slice" id="slice" class="btn btn-default btn-sm" onchange="selectslice()">
+<option value="">Select Slice type</option>
+<option value="slice">First Slice</option>
+<option value="next">Next slice</option>
+<option value="whole">Whole slice</option>
+<option value="half">Half slice</option>
+</select>
+<span>
+<input id="slicedstrg" class="btn btn-default btn-sm" name="slicedstrg" value="slicedstrg"></span><span><input id="indexvalue" class="btn btn-default btn-sm" name="indexvalue" value="indexvalue" onchange="playseq()"></span><span><input id="testTB" class="btn btn-default btn-sm" name="test" value="test text"></span>
+</div>
+<div class="slice">
+
+<input id="nextslice" class="btn btn-default btn-sm" name="nextslice" value="nextslice">
+<input id="nextsliceBtn" class="btn btn-default btn-sm" type="button" value="nextsliceBtn" onclick="nextslice()" />
+<input id="whole" class="btn btn-default btn-sm" name="whole" value="whole">
+<input id="wholeBtn" class="btn btn-default btn-sm" type="button" value="wholeBtn" onclick="wholeslice()" />
+
+</div>
+</div>
+<!-- Slice Controls End-->
+
+
+
+<div id="right-panel" class="right-panel">
+    <p></p>
+</div>
+
+
+</div>
+<div class="audio-container">
+
+<!--Audio Grid-Item-->
+<div id="audio" class="audio">
+<br />
+<!-- Audio Controls -->
+<div class="audio-controls">
+<div id="Names" class="Names">
+<span>Instrument:</span>
+<select class="btn btn-default btn-sm"></select>
+</div>
+
+<div id="Preset" class="Preset">
+<span>Preset:</span><br />
+<select class="btn btn-default btn-sm"></select>
+</div>
+
+<div class="effect">
+<span>Effect:</span>
+<select name="effect" id="effect" class="btn btn-default btn-sm" onchange="changeeffect()">
+<option value="">Select Effect</option>
+<option value="reverb">Reverb</option>
+<option value="chorus">Chorus</option>
+<option value="pingpongdelay">PingPongDelay </option>
+<option value="tremolo">Tremolo</option>
+<option value="vibrato">Vibrato</option>
+<option value="phaser">Phaser</option>
+</select>
+</div>
+<div class="delay">
+<span>Time:</span><br />
+<select name="delay" id="delay" class="btn btn-default btn-sm">
+<option value="50">select time</option>
+<option value="30">30 ms</option>
+<option value="40">40 ms</option>
+<option value="50">50 ms</option>
+<option value="60">60 ms</option>
+<option value="70">70 ms</option>
+<option value="80">80 ms</option>
+<option value="90">90 ms</option>
+<option value="100">100 ms</option>
+<option value="150">150 ms</option>
+<option value="200">200 ms</option>
+<option value="250">250 ms</option>
+<option value="300">300 ms</option>
+<option value="350">350 ms</option>
+<option value="400">400 ms</option>
+<option value="450">450 ms</option>
+<option value="500">500 ms</option>
+<option value="550">550 ms</option>
+<option value="600">600 ms</option>
+<option value="650">650 ms</option>
+<option value="700">700 ms</option>
+<option value="750">750 ms</option>
+<option value="800">800 ms</option>
+<option value="850">850 ms</option>
+<option value="900">900 ms</option>
+<option value="950">950 ms</option>
+<option value="1000">1000 ms</option>
+</select>
+
+</div>
+
+<input id="prevslicebutton" class="btn btn-default btn-sm" type="button" value="<<< Click" onclick="clickbackseq()" />
+<input id="playtoneseq" class="btn btn-default btn-sm" type="button" value="play tone seq" onclick="playseq()" />
+<input id="playallheights" class="btn btn-default btn-sm" type="button" value="play all heights" onclick="playallheights()" />
+<input id="clickthrubutton" class="btn btn-default btn-sm" type="button" value="Click >>>" onclick="clickthruseq()" />
+<input id="muteBTN" class="btn btn-default btn-sm" type="button" value="MUTE" onclick="muteaudio()" />
+<input id="eqBTN" class="btn btn-default btn-sm" type="button" value="EQ on" onclick="changeEQ()" />
+<button onclick="metrostart()">Start</button>
+<button onclick="metrostop()">Stop</button>
+</div>
+<!-- Audio Controls End-->
+
+</div>
+
+<br />
+</div>
+
+
+
+</div>
+<hr>
+
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="js/listen.js"></script>
+<script src="js/playground.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+﻿.center {
+    margin: auto;
+    background-color: grey;
+}
+.synth-container {
+    background: url(../images/Satoshi-NK-Lite-Panel.svg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 100%;
+    width: 1400px;
+    height: 800px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: auto;
+}
+/* Container */
+.play-container {
+    margin: auto;
+    background-size: 100%;
+    width: 90%;
+    display: grid;
+    grid-template-columns: 300px auto 300px;
+    grid-template-areas: 'vol-panel blocknav right-panel' 'vol-panel slice-controls right-panel' 'vol-panel stringindex right-panel' 'vol-panel audio-controls right-panel';
+    border: 5px;
+    text-align: center;
+}
+
+/* Container-Items */
+.vol-panel {
+    margin-top: 100px;
+    grid-area: vol-panel;
+    float: left;
+    color: white;
+}
+
+.blocknav {
+    grid-area: blocknav;
+    margin-top:100px;
+    
+}
+.space {
+    grid-area: space;
+}
+
+.right-panel {
+    margin-top: 80px;
+    grid-area: right-panel;
+    float: right;
+    align-content: center;
+}
+
+
+/* Slice-Controls*/
+.slice-controls {
+    display: grid;
+    justify-content: center;
+    grid-template-areas: 'slice slice slice';
+    grid-template-columns: auto auto auto;
+    grid-gap: 5px;
+    /*align-items: center;*/
+}
+
+/* Audio-Controls*/
+.audio-controls {
+    margin:auto;
+    display: grid;
+    justify-content: center;
+    grid-template-areas: 'Names Preset effect delay' 'prevslice play rectone nextslice' 'muteBTN eqBTN metronome other';
+    grid-template-columns: 150px 150px 150px 150px;
+    grid-gap: 5px;
+}
+
+
+/* Grid-Items */
+.audio-volume {
+    grid-area: audio-volume;
+}
+
+.audio {
+    grid-area: audio;
+}
+
+.blockinfo {
+    grid-area: blockinfo;
+    background: rgba(128, 128, 128, 0.76);
+    width: 100%;
+    box-shadow: inset 0px 4px 4px rgb(0, 0, 0);
+    border-radius: 5px;
+    color: #ffffff;
+    margin-top: 15px;
+    margin-bottom:15px;
+}
+/*Block Info*/
+#blockTB {
+    height: 20px;
+    width: 600px;
+    margin-left: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#searchTB {
+    text-align: center;
+    height: 20px;
+    width: auto;
+    margin-left: 0px;
+    margin-top: 10px;
+   
+}
+input[type=text] {
+    /*background: #FDFF83;*/
+    border-radius: 4px;
+    text-align: center;
+    width: 100px;
+    height: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 0.11em;
+    color: #000000;
+}
+
