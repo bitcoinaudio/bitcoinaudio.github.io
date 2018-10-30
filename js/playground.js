@@ -140,6 +140,7 @@ function getstring(searchstr, stringtype) {
 			case "root":
 
 				document.getElementById('blockTB').value = root;
+
 				document.getElementById('blockTB').readOnly = true;
 				
 				break;
