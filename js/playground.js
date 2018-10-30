@@ -140,11 +140,13 @@ function getstring(searchstr, stringtype) {
 			case "root":
 
 				document.getElementById('blockTB').value = root;
+				document.getElementById('blockTB').readOnly = true;
 				
 				break;
 
 			case "hash":
 				document.getElementById('blockTB').value = hash;
+				document.getElementById('blockTB').readOnly = true;
 				break;
 				
 		}
