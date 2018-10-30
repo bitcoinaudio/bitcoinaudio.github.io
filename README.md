@@ -6,6 +6,7 @@ Bitcoin Carnivorism to the max!
 Check [twitter](https://twitter.com/bitcoinaudio?lang=en) for a sample.
 
 The sounds of the blockchain are insteresting to say the least. At most, hypnotic. 
+Visit the [Playground](https://bitcoinaudio.github.io/) and listen!
 
 
 # References
