@@ -1,10 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\css",
-    "\\images",
-    "\\images\\blocknav"
+    "\\images\\blocknav",
+    "\\js"
   ],
-  "SelectedNode": "\\css",
+  "SelectedNode": "\\js\\playground.js",
   "PreviewInSolutionExplorer": false
 }
