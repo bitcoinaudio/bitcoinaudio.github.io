@@ -13,8 +13,12 @@ var currentstringlength = currentstring.length;
 var start = -1;
 var end = 1;
 
-var btcmain = "https://api.blockcypher.com/v1/btc/main/blocks/";
+var btcmainblocks = "https://api.blockcypher.com/v1/btc/main/blocks/";
+var btcmain = "https://api.blockcypher.com/v1/btc/main";
 var btctest = "https://api.blockcypher.com/v1/bcy/test/blocks/";
+
+var localbtccore = "http://localhost:8332";
+var chain = "http://chainquery.com/bitcoin-api/";
 
 var reverb = new Tone.Reverb({
 	"decay": 5,
@@ -81,6 +85,13 @@ function selectslice(slice) {
 	var slicetype = document.getElementById("slice").value;
 
 	switch (slicetype) {
+		case "raw":
+			
+			slice = slicestrg();			
+			instrument.triggerAttackRelease(slice, '4n');
+			$("#slicestrg").css('color', 'red', function (i) { return i + 25; });
+			
+			break;
 		case "slice":
 			
 			slice = slicestrg();			
@@ -121,33 +132,44 @@ var countGetstringcalls = 0;
 function getstring(searchstr, stringtype) {
 	searchstr = document.getElementById("searchTB").value;
 	stringtype = document.getElementById("stringtype").value;
-	countGetstringcalls++;
+	var stringtypetoggle = document.getElementById("stringtype").value;
+
+
+	$.getJSON(btcmain, function (data) {
+		var getblocks = `${data.height}`;
+		document.getElementById('blocksTB').value = getblocks;
+		countGetstringcalls++;
+
+	});
 	
-	$.getJSON(btcmain + searchstr, function (data) {		
+	$.getJSON(btcmainblocks + searchstr, function (data) {	
+		countGetstringcalls++;
+
 		var hash = `${data.hash}`;
 		var root = `${data.mrkl_root}`;
 		var info = `Now Playing: Height ${data.height}	Time: ${data.time}<br>				
 				Merkle Root: ${data.mrkl_root}<br>
 						Hash: ${data.hash}<br>
-			Calls to Blockcypher (200 calls per hour): ${countGetstringcalls}`;
+			Calls to Blockcypher (<200 calls per hour): ${countGetstringcalls}`;
 
 		
 		$(".blockinfo").html(info);
+		//$(".blockinfo").click(playselected());
+
+
 
 		
 		switch (stringtype) {
 
+
 			case "root":
 
 				document.getElementById('blockTB').value = root;
-
-				document.getElementById('blockTB').readOnly = true;
 				
 				break;
 
 			case "hash":
 				document.getElementById('blockTB').value = hash;
-				document.getElementById('blockTB').readOnly = true;
 				break;
 				
 		}
@@ -169,6 +191,7 @@ function nextslice() {
 	var nextend = end++;	
 	var nextindex = slicestrg(nextstart, nextend);
 	document.getElementById("nextslice").value = nextindex;
+
 	return nextindex;
 }
 function prevslice() {
@@ -210,15 +233,39 @@ function noloopseq() {
 	playallheights();
 }
 
+
+function heightplus100k() {
+	var h = document.getElementById("searchTB").value;
+	document.getElementById("searchTB").value = 100000 + parseInt(h, 10);
+	getstring(h);
+}
+function heightplus10k() {
+	var h = document.getElementById("searchTB").value;
+	document.getElementById("searchTB").value = 10000 + parseInt(h, 10);
+	getstring(h);
+}
+function heightplus1k() {
+	var h = document.getElementById("searchTB").value;
+	document.getElementById("searchTB").value = 1000 + parseInt(h, 10);
+	getstring(h);
+}
+function heightplus100() {
+	var h = document.getElementById("searchTB").value;
+	document.getElementById("searchTB").value = 100 + parseInt(h, 10);
+	getstring(h);
+
+}
+function heightplus10() {
+	var h = document.getElementById("searchTB").value;
+	document.getElementById("searchTB").value = 10 + parseInt(h, 10);
+	getstring(h);
+}
 //next height
 function nextheight() {
 	var h = document.getElementById("searchTB").value;
 	h++;
-	document.getElementById("searchTB").value = h;
+	document.getElementById("searchTB").value = h;	
 	getstring(h);
-
-
-	return h;
 
 }
 //previous height
@@ -227,6 +274,50 @@ function prevheight() {
 	h--;
 	document.getElementById("searchTB").value = h;
 	getstring(h);
+	playselected();
+	
+}
+function heightminus100k() {
+	var h = document.getElementById("searchTB").value;
+	document.getElementById("searchTB").value = parseInt(h, 10) -100000;
+	getstring(h);
+}
+function heightminus10k() {
+	var h = document.getElementById("searchTB").value;
+	document.getElementById("searchTB").value = parseInt(h, 10) -10000;
+	getstring(h);
+}
+function heightminus1k() {
+	var h = document.getElementById("searchTB").value;
+	document.getElementById("searchTB").value = parseInt(h, 10) -1000;
+	getstring(h);
+}
+function heightminus100() {
+	var h = document.getElementById("searchTB").value;
+	document.getElementById("searchTB").value = parseInt(h, 10) - 100;
+	getstring(h);
+}
+function heightminus10() {
+	var h = document.getElementById("searchTB").value;
+	document.getElementById("searchTB").value = parseInt(h, 10) - 10;
+	getstring(h);
+}
+
+function playselected() {
+	var txt = "";
+	if (window.getSelection) {
+		txt = window.getSelection();
+	}
+	else if (document.getSelection) {
+		txt = document.getSelection();
+	}
+	else if (document.getSelection) {
+		txt = document.getSelection.createrange().text;
+	}
+	else return;
+	
+	document.getElementById("blockTB").value = txt;
+	playseq();
 	
 }
 
@@ -238,13 +329,13 @@ function playstr() {
 	document.getElementById("indexvalue").value = n;
 	
 	instrument.triggerAttackRelease(s, '4n');
+
 	//$(".blockinfo").css("color", "#" + s + n );
 	
 	
 }
 var f = false;
 var t = true;
-
 
 function changevolume() {
 	// Volume Slider[0]
@@ -391,7 +482,7 @@ function metrostart() {
 		Tone.Transport.start();
 	};
 	Tone.Transport.start();
-	document.getElementById("testTB").value = "metrostart";
+	//document.getElementById("testTB").value = "metrostart";
 }
 function metrostop() {
 	Tone.Transport.stop();
@@ -401,13 +492,13 @@ function submitbpm() {
 	Tone.Transport.bpm.value = bpm;
 }
 function loadplayground() {
-	document.getElementById("stringindex").value = start + "," + end;
 	document.getElementById("searchTB").value = gblock;	
 	getstring(gblock);
 	changevolume();
 	changePan();
 	changeEQ();
 	pRecorder();
+	//navheight();
 
 }
 function armrecording() {

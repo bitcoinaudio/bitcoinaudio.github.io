@@ -45,14 +45,24 @@
 <div id="vol-panel" class="vol-panel"></div>
 
 
-<div class="blocknav">
-<span>
-<input id="prevblockButton" type="button" class="" value="< prev" onclick="prevheight()" /></span>
-<span>
-<input type="text" id="searchTB" onchange="getstring()" placeholder="ENTER BLOCK HEIGHT"></span>
-    <span>
-<input id="nextblockButton" type="button" class="" value="next >" onclick="nextheight()" /></span>
-         <br />       
+<div class="blocknav" >
+    <span><input type="text" id="searchTB" onchange="getstring()" placeholder="ENTER BLOCK HEIGHT">                
+</span>
+    <br />
+    <div id="blocknavbuttons" class="blocknavbuttons">
+                <button id="minus100kbtn" value="-100000" onclick="heightminus100k()" ></button>
+                <button id="minus10kbtn" value="-10000" onclick="heightminus10k()" ></button>
+                <button id="minus1kbtn" value="-1000" onclick="heightminus1k()" ></button>
+                <button id="minus100btn" value="-100" onclick="heightminus100()" ></button>
+                <button id="minus10btn"value="-10" onclick="heightminus10()"></button>
+                <button id="prevbtn" value="-1" onclick="prevheight()"></button>
+                <button id="nextbtn" value="1" onclick="nextheight()"></button>
+                <button id="plus10btn" value="10" onclick="heightplus10()"></button>
+                <button id="plus100btn" value="100" onclick="heightplus100()"></button>
+                <button id="plus1kbtn" value="1000" onclick="heightplus1k()"></button>
+                <button id="plus10kbtn" value="10000" onclick="heightplus10k()"></button>
+                <button id="plus100kbtn" value="100000" onclick="heightplus100k()"></button>
+        </div>      
 <!--Blockinfo Grid-Item-->
 <div id="blockinfo" class="blockinfo">
 <h1>blockinfo goes hear</h1>
@@ -62,7 +72,8 @@
 <option value="root">Root</option>
 <option value="hash">Hash</option>
 </select>
-<input type="text" id="blockTB" class="text-center" name="blockTB"><input type="text" id="stringindex" class="text-center" name="stringindex" />
+<input type="text" id="blockTB" class="text-center" name="blockTB"><br />
+    <input type="text" id="stringindex" class="text-center" name="stringindex" />
 
     <div class="space"></div>
     <div class="space"></div>
@@ -87,6 +98,7 @@
 <span>
 <input id="slicedstrg" class="btn btn-default btn-sm" name="slicedstrg" value="slicedstrg"></span><span><input id="indexvalue" class="btn btn-default btn-sm" name="indexvalue" value="indexvalue" onchange="playseq()"></span><span><input id="testTB" class="btn btn-default btn-sm" name="test" value="test text"></span>
 </div>
+
 <div class="slice">
 
 <input id="nextslice" class="btn btn-default btn-sm" name="nextslice" value="nextslice">
