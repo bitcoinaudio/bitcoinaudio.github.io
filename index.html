@@ -47,8 +47,9 @@
 
 
 <div class="blocknav" >
-    <span><input type="text" id="searchTB" onchange="getstring()" placeholder="ENTER BLOCK HEIGHT">                
-</span>
+         <span><input id="blocksTB"  type="text" name="blocksTB" value="BLOCKS"></span>
+
+    <span><input type="text" id="searchTB" onchange="getstring()" placeholder="ENTER BLOCK HEIGHT"></span>
     <br />
     <div id="blocknavbuttons" class="blocknavbuttons">
                 <button id="minus100kbtn" value="-100000" onclick="heightminus100k()" ></button>
@@ -114,7 +115,6 @@
 
 
 <div id="right-panel" class="right-panel">
-    <p></p>
 </div>
 
 
@@ -188,8 +188,8 @@
 <input id="clickthrubutton" class="btn btn-default btn-sm" type="button" value="Click >>>" onclick="clickthruseq()" />
 <input id="muteBTN" class="btn btn-default btn-sm" type="button" value="MUTE" onclick="muteaudio()" />
 <input id="eqBTN" class="btn btn-default btn-sm" type="button" value="EQ on" onclick="changeEQ()" />
-<button onclick="metrostart()">Start</button>
-<button onclick="metrostop()">Stop</button>
+<!--<button onclick="metrostart()">Start</button>
+<button onclick="metrostop()">Stop</button>-->
 </div>
 <!-- Audio Controls End-->
 

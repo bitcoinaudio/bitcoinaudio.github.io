@@ -13,12 +13,7 @@ var currentstringlength = currentstring.length;
 var start = -1;
 var end = 1;
 
-var btcmainblocks = "https://api.blockcypher.com/v1/btc/main/blocks/";
-var btcmain = "https://api.blockcypher.com/v1/btc/main";
-var btctest = "https://api.blockcypher.com/v1/bcy/test/blocks/";
 
-var localbtccore = "http://localhost:8332";
-var chain = "http://chainquery.com/bitcoin-api/";
 
 var reverb = new Tone.Reverb({
 	"decay": 5,
@@ -128,6 +123,16 @@ function changeeffect() {
 	s.connect(e);
 }
 
+
+var btcmainblocks = "https://api.blockcypher.com/v1/btc/main/blocks/";
+var btcmain = "https://api.blockcypher.com/v1/btc/main";
+var btctest = "https://api.blockcypher.com/v1/bcy/test/blocks/";
+
+var localbtccore = "http://localhost:8332";
+var chain = "http://chainquery.com/bitcoin-api/";
+var blockstream = "https://blockstream.info/api/";
+
+
 var countGetstringcalls = 0;
 function getstring(searchstr, stringtype) {
 	searchstr = document.getElementById("searchTB").value;
@@ -135,47 +140,43 @@ function getstring(searchstr, stringtype) {
 	var stringtypetoggle = document.getElementById("stringtype").value;
 
 
-	$.getJSON(btcmain, function (data) {
-		var getblocks = `${data.height}`;
-		document.getElementById('blocksTB').value = getblocks;
+	//GET block tip
+	$.get(blockstream + "blocks/tip/height", function (data) {
+		var getblocks = `${data}`;
+		document.getElementById('blocksTB').value = getblocks.toString();
 		countGetstringcalls++;
 
 	});
-	
-	$.getJSON(btcmainblocks + searchstr, function (data) {	
-		countGetstringcalls++;
-
-		var hash = `${data.hash}`;
-		var root = `${data.mrkl_root}`;
-		var info = `Now Playing: Height ${data.height}	Time: ${data.time}<br>				
-				Merkle Root: ${data.mrkl_root}<br>
-						Hash: ${data.hash}<br>
-			Calls to Blockcypher (<200 calls per hour): ${countGetstringcalls}`;
-
-		
-		$(".blockinfo").html(info);
-		//$(".blockinfo").click(playselected());
 
 
+	$.get(blockstream + "block-height/" + searchstr, function (data) {
+		var hash = `${data}`;
 
-		
-		switch (stringtype) {
+		$.get(blockstream + "block/" + hash, function (block) {
+			var info = `Now Playing: Height ${block.height}	Time: ${block.timestamp}<br>				
+				Merkle Root: ${block.merkle_root}<br>
+						Hash: ${hash}<br>`;
+			$(".blockinfo").html(info);
+
+			switch (stringtype) {
 
 
-			case "root":
+				case "root":
 
-				document.getElementById('blockTB').value = root;
-				
-				break;
+					document.getElementById('blockTB').value = block.merkle_root;
 
-			case "hash":
-				document.getElementById('blockTB').value = hash;
-				break;
-				
-		}
-		
+					break;
 
+				case "hash":
+					document.getElementById('blockTB').value = hash;
+					break;
+
+			}
+
+			countGetstringcalls++;
+		});
 	});
+
 }
 
 function slicestrg() {	

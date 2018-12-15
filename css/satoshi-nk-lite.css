@@ -48,7 +48,7 @@
 }
 
 .right-panel {
-    margin-top: 100px;
+    margin-top: 25px;
     grid-area: right-panel;
     /*float: right;
     align-content: center;*/
@@ -138,6 +138,9 @@
 }
 
 #blocksTB {
+    margin-top: 5px;
+    margin-left: 0px;
+    margin-top: 5px;
     text-align: center;
     /*width: auto;
     height: auto;*/
