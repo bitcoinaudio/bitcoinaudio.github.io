@@ -75,7 +75,10 @@
 <option value="hash">Hash</option>
 </select>
 <input type="text" id="blockTB" class="text-center" name="blockTB"><br />
-    <input type="text" id="stringindex" class="text-center" name="stringindex" />
+   <input id="prevslicebutton" class="btn btn-default btn-sm" type="button" value="<<< Click" onclick="clickbackseq()" />
+ <input type="text" id="stringindex" class="text-center" name="stringindex" />
+    <input id="clickthrubutton" class="btn btn-default btn-sm" type="button" value="Click >>>" onclick="clickthruseq()" />
+
 
     <div class="space"></div>
     <div class="space"></div>
@@ -182,10 +185,8 @@
 
 </div>
 
-<input id="prevslicebutton" class="btn btn-default btn-sm" type="button" value="<<< Click" onclick="clickbackseq()" />
 <input id="playtoneseq" class="btn btn-default btn-sm" type="button" value="play tone seq" onclick="playseq()" />
 <input id="playallheights" class="btn btn-default btn-sm" type="button" value="play all heights" onclick="playallheights()" />
-<input id="clickthrubutton" class="btn btn-default btn-sm" type="button" value="Click >>>" onclick="clickthruseq()" />
 <input id="muteBTN" class="btn btn-default btn-sm" type="button" value="MUTE" onclick="muteaudio()" />
 <input id="eqBTN" class="btn btn-default btn-sm" type="button" value="EQ on" onclick="changeEQ()" />
 <!--<button onclick="metrostart()">Start</button>

@@ -1,4 +1,4 @@
-﻿var gblock = 1;
+﻿var gblock = 0;
 var vol = new Tone.Volume();
 var eq3 = new Tone.EQ3({
 	"low": 0,
@@ -12,9 +12,6 @@ var currentstring = document.getElementById('blockTB');
 var currentstringlength = currentstring.length;
 var start = -1;
 var end = 1;
-
-
-
 var reverb = new Tone.Reverb({
 	"decay": 5,
 	"preDelay": 0.01
@@ -122,30 +119,22 @@ function changeeffect() {
 	var e = selecteffect();
 	s.connect(e);
 }
-
-
-var btcmainblocks = "https://api.blockcypher.com/v1/btc/main/blocks/";
-var btcmain = "https://api.blockcypher.com/v1/btc/main";
-var btctest = "https://api.blockcypher.com/v1/bcy/test/blocks/";
-
-var localbtccore = "http://localhost:8332";
-var chain = "http://chainquery.com/bitcoin-api/";
 var blockstream = "https://blockstream.info/api/";
-
-
 var countGetstringcalls = 0;
 function getstring(searchstr, stringtype) {
 	searchstr = document.getElementById("searchTB").value;
 	stringtype = document.getElementById("stringtype").value;
 	var stringtypetoggle = document.getElementById("stringtype").value;
+	if (searchstr < 0) {
 
+		alert("Please select a Height greater than 0");
+		document.getElementById("searchTB").value = 0;
+	}
 
 	//GET block tip
 	$.get(blockstream + "blocks/tip/height", function (data) {
 		var getblocks = `${data}`;
-		document.getElementById('blocksTB').value = getblocks.toString();
-		countGetstringcalls++;
-
+		document.getElementById('blocksTB').value = getblocks.toString();	
 	});
 
 
@@ -173,7 +162,7 @@ function getstring(searchstr, stringtype) {
 
 			}
 
-			countGetstringcalls++;
+			
 		});
 	});
 
@@ -222,7 +211,6 @@ function resetslice() {
 	
 	playstr();
 }
-
 function loopseq() {
 	start = 0;
 	end = start + 2;
@@ -233,8 +221,6 @@ function noloopseq() {
 	end = start + 2;
 	playallheights();
 }
-
-
 function heightplus100k() {
 	var h = document.getElementById("searchTB").value;
 	document.getElementById("searchTB").value = 100000 + parseInt(h, 10);
@@ -275,7 +261,7 @@ function prevheight() {
 	h--;
 	document.getElementById("searchTB").value = h;
 	getstring(h);
-	playselected();
+	
 	
 }
 function heightminus100k() {
@@ -303,7 +289,6 @@ function heightminus10() {
 	document.getElementById("searchTB").value = parseInt(h, 10) - 10;
 	getstring(h);
 }
-
 function playselected() {
 	var txt = "";
 	if (window.getSelection) {
@@ -321,23 +306,6 @@ function playselected() {
 	playseq();
 	
 }
-
-function playstr() {
-	selectslice();
-	var s = slicestrg();
-	var n = nextslice();	
-	document.getElementById("slicedstrg").value = s;
-	document.getElementById("indexvalue").value = n;
-	
-	instrument.triggerAttackRelease(s, '4n');
-
-	//$(".blockinfo").css("color", "#" + s + n );
-	
-	
-}
-var f = false;
-var t = true;
-
 function changevolume() {
 	// Volume Slider[0]
 	var audiosliders = document.getElementById("vol-panel");
@@ -419,6 +387,15 @@ function timer() {
 	delayTime = Number(timeMenu.options[timeMenu.selectedIndex].value);
 	timeout = setTimeout(highlightslice, delayTime);
 }
+//PLAY*//
+function playstr() {
+	selectslice();
+	var s = slicestrg();
+	var n = nextslice();
+	document.getElementById("slicedstrg").value = s;
+	document.getElementById("indexvalue").value = n;
+	instrument.triggerAttackRelease(s, '4n');
+}
 function playseq() {
 		var n = nextslice();
 	//var n = slicestrg();	
@@ -433,8 +410,6 @@ function playseq() {
 		loopseq();
 	}
 }
-
-
 function playallheights() {
 	var n = nextslice();
 	//var n = slicestrg();	
@@ -449,7 +424,6 @@ function playallheights() {
 		noloopseq();
 	}
 }
-
 function clickthruseq() {	
 	var n = nextslice();	
 	playstr(n);	
@@ -463,15 +437,12 @@ function clickbackseq() {
 	var p = prevslice();	
 	playstr(p);
 
-	if (p === "") {
-		resetslice();
-	}
+	
 }
 function stoptimeout() {
 	clearTimeout(timeout);
 }
 function metrostart() {
-
 	var metro = new Tone.Player("http://localhost:8017/Metronome/Box_5_BD.mp3").toMaster();
 	metro.autostart = true;
 	Tone.Transport.bpm.value = 60;
@@ -483,7 +454,6 @@ function metrostart() {
 		Tone.Transport.start();
 	};
 	Tone.Transport.start();
-	//document.getElementById("testTB").value = "metrostart";
 }
 function metrostop() {
 	Tone.Transport.stop();
@@ -499,11 +469,8 @@ function loadplayground() {
 	changePan();
 	changeEQ();
 	pRecorder();
-	//navheight();
-
-}
-function armrecording() {
 	
+
 }
 
 
