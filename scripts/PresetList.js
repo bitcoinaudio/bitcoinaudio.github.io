@@ -4,7 +4,8 @@ var PresetList = {
 		"Tiny.json"
 	],
 	"DuoSynth": [
-		"DuoSynth.json"
+		"Duo.json",
+		"Duo2.json"
 	],
 	"FMSynth": [
 		"ElectricCello.json",

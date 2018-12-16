@@ -13,7 +13,7 @@ var currentstringlength = currentstring.length;
 var start = -1;
 var end = 1;
 var reverb = new Tone.Reverb({
-	"decay": 5,
+	"decay": 10,
 	"preDelay": 0.01
 }).toMaster();
 var chorus = new Tone.Chorus(8, 5, 1).toMaster();
@@ -133,8 +133,8 @@ function getstring(searchstr, stringtype) {
 
 	//GET block tip
 	$.get(blockstream + "blocks/tip/height", function (data) {
-		var getblocks = `${data}`;
-		document.getElementById('blocksTB').value = getblocks.toString();	
+		var getblocks =  `${data}`;
+		document.getElementById('blocksTB').value =  getblocks.toString();	
 	});
 
 
@@ -142,9 +142,10 @@ function getstring(searchstr, stringtype) {
 		var hash = `${data}`;
 
 		$.get(blockstream + "block/" + hash, function (block) {
-			var info = `Now Playing: Height ${block.height}	Time: ${block.timestamp}<br>				
+			var info = `Now Playing: Height ${block.height}	Timestamp: ${block.timestamp}<br>				
 				Merkle Root: ${block.merkle_root}<br>
-						Hash: ${hash}<br>`;
+						Hash: ${hash}<br>
+							Calling on Blockstream`;
 			$(".blockinfo").html(info);
 
 			switch (stringtype) {
