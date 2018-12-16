@@ -134,7 +134,7 @@ function getstring(searchstr, stringtype) {
 	//GET block tip
 	$.get(blockstream + "blocks/tip/height", function (data) {
 		var getblocks =  `${data}`;
-		document.getElementById('blocksTB').value =  getblocks.toString();	
+		document.getElementById('blocksTB').value = "Highest Block: " +  getblocks;	
 	});
 
 
@@ -145,7 +145,7 @@ function getstring(searchstr, stringtype) {
 			var info = `Now Playing: Height ${block.height}	Timestamp: ${block.timestamp}<br>				
 				Merkle Root: ${block.merkle_root}<br>
 						Hash: ${hash}<br>
-							Calling on Blockstream`;
+							Calling on Blockstream for blockchain info`;
 			$(".blockinfo").html(info);
 
 			switch (stringtype) {
