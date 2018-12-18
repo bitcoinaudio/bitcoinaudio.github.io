@@ -10,8 +10,8 @@ var eq3 = new Tone.EQ3({
 
 var currentstring = document.getElementById('blockTB');
 var currentstringlength = currentstring.length;
-var start = -1;
-var end = 1;
+var start = currentstringlength-currentstringlength;
+var end = start + 1;
 var reverb = new Tone.Reverb({
 	"decay": 10,
 	"preDelay": 0.01
@@ -127,7 +127,7 @@ function getstring(searchstr, stringtype) {
 	var stringtypetoggle = document.getElementById("stringtype").value;
 	if (searchstr < 0) {
 
-		alert("Please select a Height greater than 0");
+		alert("Please select a Height from 0 to max Block Height" );
 		document.getElementById("searchTB").value = 0;
 	}
 
@@ -188,8 +188,9 @@ function nextslice() {
 function prevslice() {
 	var prevstart = start--;
 	var prevend = end--;
-	var previndex = slicestrg(prevstart, prevend);
-	document.getElementById("testTB").value = previndex;
+	//var previndex = slicestrg(prevstart, prevend);
+	var previndex = nextslice();
+	document.getElementById("testTB").value = prevstart + "," + prevend;
 
 	return previndex;
 }
@@ -469,7 +470,7 @@ function loadplayground() {
 	changevolume();
 	changePan();
 	changeEQ();
-	pRecorder();
+	slicestrg();
 	
 
 }
