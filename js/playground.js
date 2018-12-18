@@ -470,7 +470,6 @@ function loadplayground() {
 	changevolume();
 	changePan();
 	changeEQ();
-	slicestrg();
 	
 
 }
