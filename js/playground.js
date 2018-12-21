@@ -125,18 +125,22 @@ function getstring(searchstr, stringtype) {
 	searchstr = document.getElementById("searchTB").value;
 	stringtype = document.getElementById("stringtype").value;
 	var stringtypetoggle = document.getElementById("stringtype").value;
-	if (searchstr < 0) {
-
-		alert("Please select a Height from 0 to max Block Height" );
-		document.getElementById("searchTB").value = 0;
-	}
+	
+	
 
 	//GET block tip
 	$.get(blockstream + "blocks/tip/height", function (data) {
 		var getblocks =  `${data}`;
-		document.getElementById('blocksTB').value = "Highest Block: " +  getblocks;	
-	});
+		document.getElementById('blocksTB').value = "Highest Block: " + getblocks;	
+		if (searchstr < 0) {
 
+			alert("Please select Height 0 to " + getblocks);
+			document.getElementById("searchTB").value = 0;
+		}
+
+	});
+	
+	
 
 	$.get(blockstream + "block-height/" + searchstr, function (data) {
 		var hash = `${data}`;

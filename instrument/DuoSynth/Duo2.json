@@ -6,7 +6,7 @@
     "volume": -5,
     "portamento": 0,
     "oscillator": {
-      "type": "sawtooth"
+      "type": "sine"
     },
     "filterEnvelope": {
       "attack": 0.01,
