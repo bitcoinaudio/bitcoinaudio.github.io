@@ -1,9 +1,9 @@
 ﻿{
   "vibratoAmount": 0.5,
-  "vibratoRate": 10,
+  "vibratoRate": 5,
   "harmonicity": 1.5,
   "voice0": {
-    "volume": -5,
+    "volume": -10,
     "portamento": 0,
     "oscillator": {
       "type": "sine"
@@ -22,7 +22,7 @@
     }
   },
   "voice1": {
-    "volume": 0,
+    "volume": -10,
     "portamento": 0,
     "oscillator": {
       "type": "sine"
