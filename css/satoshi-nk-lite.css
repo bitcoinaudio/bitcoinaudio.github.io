@@ -149,6 +149,27 @@
     border-radius: 4px;
 }
 
+#testTB {
+    height: 20px;
+    width: 500px;
+    margin-left: 0px;
+    margin-top: 5px;
+    background: #FDFF83;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+
+#clipTB {
+    height: 20px;
+    width: 500px;
+    margin-left: 0px;
+    margin-top: 5px;
+    background: #FDFF83;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+
+
 #searchTB {
     /*text-align: center;
     height: 20px;
@@ -165,6 +186,75 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
 }
+
+#wholeString {
+    background: url(../images/notes/wholeBtn.svg) no-repeat top left;
+    background-size: contain;
+    display: inline-block;
+    width: 140px;
+    height: 60px;
+    border: none;
+}
+
+    #wholeString:hover {
+        background: url(../images/notes/wholeBtn-hvr.svg) no-repeat top left;
+        background-size: contain;
+        display: inline-block;
+        width: 140px;
+        height: 60px;
+        border: none;
+    }
+
+#halfString {
+    background: url(../images/notes/halfBtn.svg) no-repeat top left;
+    background-size: contain;
+    display: inline-block;
+    width: 140px;
+    height: 60px;
+    border: none;
+}
+
+    #halfString:hover {
+        background: url(../images/notes/halfBtn-hvr.svg) no-repeat top left;
+        background-size: contain;
+        display: inline-block;
+        width: 140px;
+        height: 60px;
+        border: none;
+    }
+
+#quarterString {
+    background: url(../images/notes/quarterBtn.svg) no-repeat top left;
+    background-size: contain;
+    width: 140px;
+    height: 60px;
+    border: none;
+}
+
+    #quarterString:hover {
+        background: url(../images/notes/quarterBtn-hvr.svg) no-repeat top left;
+        background-size: contain;
+        width: 140px;
+        height: 60px;
+        border: none;
+    }
+
+#eighthString {
+    background: url(../images/notes/eighthBtn.svg) no-repeat top left;
+    background-size: contain;
+    width: 140px;
+    height: 60px;
+    border: none;
+}
+
+    #eighthString:hover {
+        background: url(../images/notes/eighthBtn-hvr.svg) no-repeat top left;
+        background-size: contain;
+        width: 140px;
+        height: 60px;
+        border: none;
+    }
+
 
 #minus100kbtn {
     background: url(../images/blocknav/minus100Kbtn.svg) no-repeat top left;
