@@ -143,14 +143,11 @@ function getstring(stringtype, merkleroot, hash, getblocktip) {
 	//GET Root and Hash of Height
 	$.get(blockstream + "block-height/" + searchstr, function (data) {
 		hash = `${data}`;
-		
-		
-
-
 		$.get(blockstream + "block/" + hash, function (block) {
 			merkleroot = `${block.merkle_root}`;
-
-			var info = `Now Playing: Height ${block.height}	Timestamp: ${block.timestamp}<br>				
+			var timestamp = `${block.timestamp}`;
+			var ts = timestamp.toString();
+			var info = `Now Playing: Height ${block.height}	Timestamp: ${ts}<br>				
 				Merkle Root: ${block.merkle_root}<br>
 						Hash: ${hash}<br>
 							Calling on Blockstream for blockchain info`;
