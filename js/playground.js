@@ -121,7 +121,7 @@ function changeeffect() {
 }
 
 
-function getstring(stringtype, merkleroot, hash) {
+function getstring(stringtype, merkleroot, hash, getblocks) {
 	searchstr = document.getElementById("searchTB").value;
 	stringtype = document.getElementById("stringtype").value;
 	var stringtypetoggle = document.getElementById("stringtype").value;
