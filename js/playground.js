@@ -121,32 +121,30 @@ function changeeffect() {
 }
 
 
-function getstring(stringtype, merkleroot, hash, getblocks) {
+function getstring(stringtype, merkleroot, hash, getblocktip) {
 	searchstr = document.getElementById("searchTB").value;
 	stringtype = document.getElementById("stringtype").value;
-	var stringtypetoggle = document.getElementById("stringtype").value;
-
 	//GET block tip
 	$.get(blockstream + "blocks/tip/height", function (data) {
-		getblocks = `${data}`;
-		document.getElementById('blocksTB').value = "Highest Block: " + getblocks;
+		getblocktip = `${data}`;
+		document.getElementById('blocksTB').value = "Highest Block: " + getblocktip;
 		if (searchstr < 0) {
 
-			alert("TOO LOW! Please select Height 0 to " + getblocks);
+			alert("TOO LOW! Please select Height 0 to " + getblocktip);
 			document.getElementById("searchTB").value = 0;
 		}
-		else if (searchstr > getblocks) {
-			alert("TOO HIGH! Please select Height 0 to " + getblocks);
+		if (searchstr > parseInt(getblocktip)) {
+			alert("TOO HIGH! Please select Height 0 to " + getblocktip);
 			document.getElementById("searchTB").value = 0;
 		}
-
 	});
 
 
 	//GET Root and Hash of Height
 	$.get(blockstream + "block-height/" + searchstr, function (data) {
 		hash = `${data}`;
-
+		
+		
 
 
 		$.get(blockstream + "block/" + hash, function (block) {
@@ -157,6 +155,8 @@ function getstring(stringtype, merkleroot, hash, getblocks) {
 						Hash: ${hash}<br>
 							Calling on Blockstream for blockchain info`;
 			$(".blockinfo").html(info);
+
+			
 
 			switch (stringtype) {
 
