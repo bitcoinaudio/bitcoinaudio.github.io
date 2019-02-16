@@ -73,7 +73,7 @@
                 <button id="plus10kbtn" value="10000" onclick="heightplus10k()"></button>
                 <button id="plus100kbtn" value="100000" onclick="heightplus100k()"></button>
         </div>      
-<!--Blockinfo Grid-Item-->
+<!--Blockinfo-->
 <div id="blockinfo" class="blockinfo">
 <h1>blockinfo goes hear</h1>
 </div>
@@ -91,6 +91,17 @@
 
     <br />
 
+      <br />
+    <input id="prevslicebutton" class="" type="button" onclick="clickbackseq()" />
+    <input id="stringindex" type="text"  class="text-center" name="stringindex" />
+    <input id="clickthrubutton" class="" type="button" onclick="clickthruseq()" />
+    <br />
+
+    <button id="playtoneseq" class="" onclick="playseq()"></button>
+    <button id="playallheights" class="" onclick="playallheights()"></button>
+    <button id="muteBTN" class="" onclick="muteaudio()"></button>
+    <br />
+
      <div id="notebuttons" class="">
          <br />
                
@@ -100,19 +111,31 @@
                 <button id="eighthString" value="eighthString" onclick="eighthString()"></button>
             </div>
 
-   <input id="prevslicebutton" class="btn btn-default btn-sm" type="button" value="<<< Click" onclick="clickbackseq()" />
- <input type="text" id="stringindex" class="text-center" name="stringindex" />
-    <input id="clickthrubutton" class="btn btn-default btn-sm" type="button" value="Click >>>" onclick="clickthruseq()" /><br />
-    <input id="playtoneseq" class="btn btn-default btn-sm" type="button" value="play tone seq" onclick="playseq()" />
-<input id="muteBTN" class="btn btn-default btn-sm" type="button" value="STOP" onclick="muteaudio()" />
-<input id="playallheights" class="btn btn-default btn-sm" type="button" value="play all heights" onclick="playallheights()" />
-
 
     <div class="space">
 
 <div class="audio-controls">
-    <div class="time">
-<span>Time:</span><br />
+<!-- Audio Controls End-->
+    </div>
+    <div class="space"></div>
+</div>
+<!-- Slice Controls-->
+<div class="slice-controls">
+<div class="slice"></div>
+<div class="slice"></div>
+<div class="slice"></div>
+</div>
+<!-- Slice Controls End-->
+</div>
+
+    <div id="right-panel" class="right-panel">
+        <div id="powerswitch" class="powerswitch">
+    <webaudio-switch id="killtoggle" src="../knobs/switch_toggle.png" width="54" height="54" type="toggle"  midicc="0.16" midilearn="1"></webaudio-switch>
+
+
+</div>
+
+<div class="time">
 <select name="time" id="time" class="">
 <option value="90">90ms default</option>
 <option value="30">30 ms</option>
@@ -144,20 +167,19 @@
 </select>
 
 </div>
-
+<br />
 <div id="Names" class="Names">
-<span>Instrument:</span>
-<select class="btn btn-default btn-sm"></select>
+<select class="" ></select>
 </div>
-
+<br />
 <div id="Preset" class="Preset">
-<span>Preset:</span><br />
-<select class="btn btn-default btn-sm"></select>
-</div>
 
+<select class="" ></select>
+</div>
+<br />
 <div class="effect">
-<span>Effect:</span>
-<select name="effect" id="effect" class="btn btn-default btn-sm" onchange="changeeffect()">
+
+<select name="effect" id="effect" class="" onchange="changeeffect()">
 <option value="">Select Effect</option>
 <option value="reverb">Reverb</option>
 <option value="chorus">Chorus</option>
@@ -167,39 +189,25 @@
 <option value="phaser">Phaser</option>
 </select>
 </div>
-<!-- Audio Controls End-->
-    </div>
-    <div class="space"></div>
-</div>
-<!-- Slice Controls-->
-<div class="slice-controls">
-<div class="slice"></div>
-<div class="slice">
-<select name="slice" id="slice" class="btn btn-default btn-sm" onchange="selectslice()">
+        <br />
+<select name="slice" id="slice" class="" onchange="selectslice()">
 <option value="">Select Slice type</option>
 <option value="slice">First Slice</option>
 <option value="next">Next slice</option>
 <option value="whole">Whole slice</option>
 <option value="half">Half slice</option>
 </select>
+
 </div>
-<div class="slice"></div>
-</div>
-<!-- Slice Controls End-->
-<div id="right-panel" class="right-panel">
-</div>
-</div>
+
+
 <div class="audio-container">
 <!--Audio Grid-Item-->
 <div id="audio" class="audio">
-<br />
-</div>
-<br />
 </div>
 </div>
-<hr>
-<br />       
-
+</div>
+</div>
  <!-- Copyrights Section -->
     <div class="copyright">&copy;2018 - <strong>Bitcoin Audio</strong>
          <a href="https://github.com/bitcoinaudio/bitcoinaudio.github.io" ><img src="images/GitHub.png" width="32" height="32"></a>

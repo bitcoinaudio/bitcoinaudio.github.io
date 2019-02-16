@@ -1,10 +1,10 @@
 ﻿.center {
     margin: auto;
-    background-color: grey;
+    background-color: #323232;
 }
 
 .synth-container {
-    background: url(../images/Satoshi-NK-Lite-Panel.svg);
+    background: url(../images/synth-base-panel-lite.5.svg);
     background-position: top;
     background-repeat: no-repeat;
     background-attachment: scroll;
@@ -48,7 +48,7 @@
 }
 
 .right-panel {
-    margin-top: 25px;
+    margin-top: 100px;
     grid-area: right-panel;
     /*float: right;
     align-content: center;*/
@@ -93,9 +93,9 @@
 }
 
 .blockinfo {
-    grid-area: blockinfo;
+   margin:auto;
     background: #FDFF83;
-    width: 100%;
+    width: 65%;
     box-shadow: inset 0px 4px 4px rgb(0, 0, 0);
     border-radius: 5px;
     color: #000000;
@@ -119,6 +119,19 @@
         padding: 2px 0;
         font-size: 16px;*/
 }
+
+#powerswitch {
+    background: url(../images/PowerSwitch.svg) no-repeat;
+    background-size: 250px 135px;
+    height: 150px;
+    width: 100%;
+}
+
+#killtoggle {
+    height: 54px;
+    margin-top: 50px;
+}
+
 
 /*Block Info*/
 #stringtype {
@@ -186,6 +199,83 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
 }
+
+/*Player Controls*/
+#playtoneseq {
+    background-image: url(../images/BAplayer/playbutton.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+
+#playallheights {
+    background-image: url(../images/BAplayer/playallbtn.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+
+#muteBTN {
+    background-image: url(../images/BAplayer/pausebutton.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+
+#record {
+    background-image: url(../images/BAplayer/recordbtn.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+
+#cancel {
+    background-image: url(../images/BAplayer/stoprecordbtn.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+
+
+
+#prevslicebutton {
+    background-image: url(../images/blocknav/backbutton.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+
+    #prevslicebutton:hover {
+    }
+
+#clickthrubutton {
+    background-image: url(../images/blocknav/nextbutton.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+
 
 #wholeString {
     background: url(../images/notes/wholeBtn.svg) no-repeat top left;
@@ -358,6 +448,16 @@
     width: 70px;
     height: 30px;
     border: none;
+}
+
+select {
+    height: 20px;
+    width: 150px;
+    margin-left: 0px;
+    margin-top: 5px;
+    background: #FDFF83;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
 }
 
 input[type=text] {
