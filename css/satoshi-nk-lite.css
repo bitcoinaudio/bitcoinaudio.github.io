@@ -461,7 +461,7 @@ select {
 }
 
 input[type=text] {
-    /*background: #FDFF83;*/
+    background: #FDFF83;
     /*border-radius: 4px;
     text-align: center;
     width: 100px;
