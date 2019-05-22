@@ -1,4 +1,4 @@
-﻿var gblock = 050419;
+﻿var gblock = 0;
 var vol = new Tone.Volume();
 var eq3 = new Tone.EQ3({
 	"low": 0,
@@ -153,7 +153,7 @@ function getstring(stringtype, merkleroot, hash, getblocktip) {
 							Calling on Blockstream for blockchain info`;
 			$(".blockinfo").html(info);
 
-			
+
 
 			switch (stringtype) {
 
@@ -312,7 +312,7 @@ function wholeString() {
 	var strgslice = m.slice(start, end);
 	cliptb.value = strgslice;
 	cliptb.select();
-	cliptb.focus(); 
+	cliptb.focus();
 
 }
 function halfString() {
@@ -373,8 +373,17 @@ function playseq() {
 	var timeMenu = document.getElementById("time");
 	timeTime = Number(timeMenu.options[timeMenu.selectedIndex].value);
 	timeout = setTimeout(playseq, timeTime);
-	playstr();
-	
+
+
+
+	try {
+		playstr();
+
+	}
+	catch (err) {
+
+	}
+
 
 	if (n === "") {
 		loopseq();
@@ -386,8 +395,6 @@ function playstr() {
 	var n = nextslice();
 
 	instrument.triggerAttackRelease(s, 0.5);
-	
-	//instrument.frequency.setValueAtTime(s);
 }
 var cliptb = document.getElementById('clipTB');
 
