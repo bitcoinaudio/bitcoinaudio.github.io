@@ -1,4 +1,4 @@
-﻿var gblock = 0;
+﻿var gblock = 600000;
 var vol = new Tone.Volume();
 var eq3 = new Tone.EQ3({
 	"low": 0,
